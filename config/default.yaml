@@ -1,0 +1,97 @@
+# Mandatory
+server:
+  port: 5002
+
+# Mandatory.
+cache:
+  host: "127.0.0.1"
+  port: 6379
+  ttl: "PT10M"
+  # Optional. Default is 0.
+  db: 1
+
+# Optional.
+responseCache:
+  mongoURL: "mongodb://tvast:password@127.0.0.1:27017/ps?authSource=admin"
+  ttl: "PT10M"
+
+# Mandatory.
+# Priority order will be
+# 1. Synchronous
+# 2. webhook
+# 3. pubSub
+client:
+  synchronous: 
+    mongoURL: "mongodb://tvast:password@127.0.0.1:27017/ps?authSource=admin"
+
+  #webhook:
+  #  url: "https://beckn.free.beeceptor.com/clientURL"
+  
+  #messageQueue: 
+  #  amqpURL: "amqp://guest:guest@localhost:5672"
+  #  incomingQueue: "protocol-server-incoming"
+  #  outgoingQueue: "protocol-server-outgoing"
+
+# Mandatory.
+app:
+  # Mandatory.
+  mode: bap
+
+  # Two types of gateway mode present.
+  # client and network.
+  gateway:
+    mode: network
+    inboxQueue: "inbox"
+    outboxQueue: "outbox"
+    amqpURL: "amqp://tvast:password@127.0.0.1:5672"
+
+  # Mandatory.
+  actions:
+    requests:
+      search:
+        ttl : "PT10S"
+      init:
+        ttl : "PT10S"
+      select:
+        ttl : "PT10S"
+      confirm:
+        ttl : "PT10S"
+      status:
+        ttl : "PT10S"
+    
+    responses: 
+      on_search:
+        ttl: "PT10S"
+      
+      on_init:
+        ttl: "PT10S"
+      on_select:
+        ttl: "PT10S"
+      on_confirm:
+        ttl: "PT10S"
+      on_status:
+        ttl: "PT10S"
+  
+  # Mandatory.
+  privateKey: "9SvRsaDFH7pROUoo5TxYSlg3UNqzvzFgJXCTW92p0qN+XiZPme21rz3BpnqA9BADbz2yQ7aD0OJtkl6/BfrDKg=="
+  publicKey: "fl4mT5ntta89waZ6gPQQA289skO2g9DibZJevwX6wyo="
+
+  # Mandatory.
+  subscriberId: "dsep:courses.Chakshu-Local-PS-BAP"
+  subscriberUri: "https://b40f-103-212-147-43.in.ngrok.io"
+  
+  # Mandatory.
+  registryUrl: https://registry.becknprotocol.io/subscribers
+  auth: false
+  uniqueKey: "Chakshu-Local-PS-BAP-Key-4"
+  
+  # Mandatory.
+  city: "std:080"
+  country: "IND"
+
+  # Mandatory.
+  ttl: "PT10M"
+
+  # Mandatory.
+  httpTimeout: "PT3S"
+  httpRetryCount: 2

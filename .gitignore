@@ -6,7 +6,9 @@ config/*.yaml
 !config/new-config-sample.yaml
 logs/*
 *.pem
-config/default.yml
+!config/default.yml
 .DS_Store
 docker/data/
 data
+
+redis-data/
